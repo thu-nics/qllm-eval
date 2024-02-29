@@ -1,0 +1,10 @@
+LLaMA2-7B-chat	70.28	69.66	68.81	30.12
+LLaMA2-13B-chat	74.32	74.47	73.58	28.28
+LLaMA2-70B-chat	77.09	77.2	76.11	27.39
+Falcon-7B-instruct	62.81	62.88	61.77	33.36
+Falcon-40B-instruct	76.6	76.5	76.31	25.89
+Falcon-180b-chat	82.22	81.58	81.76	25.71
+ChatGLM3-6B	59.83	59.18	58.49	30.02
+ChatGLM3-6B-32k	66.09	65.94	65.46	27.39
+Mistral-7B-instruct	74.16	73.44	73.21	44.99
+Mixtral-8x7B-instruct	80.43	80.34	79.9	33.6

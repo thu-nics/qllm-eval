@@ -1,0 +1,10 @@
+---
+output_dir: new_cases/  # directory to put the generated testcases
+task: lines  # choose between topics and lines
+num_test_samples: 500 # number of testcases for each test
+
+
+# lines evaluation options
+num_lines: [200,300,400,500,600,680]   # number of lines in each testcase
+line_idx_opt: LRT-NL # type of line index, choose among LRT, LRT-ABCindex, LRT-UUID, LRT-NL
+

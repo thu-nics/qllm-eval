@@ -1,0 +1,38 @@
+# basic requirements
+torch>=2.0
+xopen
+anthropic
+
+# huggingface requirements
+accelerate>=0.21.0
+transformers==4.38.1
+datasets
+evaluate
+
+# for logging or special models, please try installing the following packages
+wandb
+sentencepiece
+
+# for longbench
+tqdm
+rouge
+jieba
+fuzzywuzzy
+einops
+
+# lm_eval
+lm_eval==0.3.0
+
+# for visualization
+seaborn
+
+# for conversation tasks
+anthropic
+openai==0.28
+fschat
+
+# use flash attention
+packaging
+ninja
+# flash-attn
+triton>=2.1.0
