@@ -102,8 +102,13 @@ Based on the extensive experiments, we systematically summarize the effect of qu
 
 ## Citation
 ```
-@article{qllm_eval,
-      title={Evaluating Quantized Large Language Models},
+@misc{li2024evaluating,
+      title={Evaluating Quantized Large Language Models}, 
+      author={Shiyao Li and Xuefei Ning and Luning Wang and Tengxuan Liu and Xiangsheng Shi and Shengen Yan and Guohao Dai and Huazhong Yang and Yu Wang},
+      year={2024},
+      eprint={2402.18158},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
 }
 ```
 
