@@ -7,7 +7,7 @@ Basic instructions on evaluating quantized LLMs with [LongEval](https://github.c
     ```
     cd qllm_eval/evaluation/q_long
 
-    python longeval/generate_testcases.py longeval/generate_testcases_configs.yaml
+    python longeval/generate_testcase.py longeval/generate_testcases_configs.yaml
     ```
 
 2. Evaluation with `LongEval`.
