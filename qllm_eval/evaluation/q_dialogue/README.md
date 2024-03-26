@@ -10,7 +10,9 @@ cd path/to/QLLM-Evaluation
 pip install -e .
 pip install -r requirements.txt
 ```
-You don't need to download the source code of FastChat, for the package `fschat` has been included in our `requirements.txt`.
+If you want to evaluate `mamba` models, `mamba_ssm` should also be installed according to: https://github.com/state-spaces/mamba .
+
+Note that you don't need to download the source code of FastChat, for the package `fschat` has been included in our `requirements.txt`.
 
 ## Evaluate a quantized model on MT-bench
 ### Generate model answers to MT-bench questions
