@@ -82,16 +82,7 @@ def run_eval(
 # build model and tokenizer
 def build_model_and_enc(model_path, use_flash_attn, kv_bit=16, kv_group_size=128):
     print(f"* Building model {model_path}")
-    
-    # mamba model
-    if 'mamba' in model_path:
-        # mamba_ssm should be installed according to `https://github.com/state-spaces/mamba`
-        from mamba_ssm.models.mixer_seq_simple import MambaLMHeadModel    
-        model = MambaLMHeadModel.from_pretrained(model_path, device="cuda", dtype=torch.float16)
-        enc = AutoTokenizer.from_pretrained(model_path)
-        return model, enc
 
-    # other transformer models
     # whether to trust remote code
     if 'chatglm' in model_path or 'mpt' in model_path:
         trust_remote_code = True
