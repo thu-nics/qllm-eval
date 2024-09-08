@@ -165,12 +165,12 @@ class HuggingFace_(BaseModel):
             hf_cache_dir = os.getenv('HF_MODEL_HUB', None)
 
         # set trust remote code if key words presented in the model name or path.
-        if 'chatglm' in path or 'mpt' in path:
+        if 'chatglm' in path or 'mpt' in path or 'deepseek' in path.lower():
             self.trust_remote_code = True
             model_kwargs['trust_remote_code'] = True
             tokenizer_kwargs['trust_remote_code'] = True
         else:
-            self.trust_remote_code = False
+            self.trust_remote_code = model_kwargs.get("trust_remote_code")
             model_kwargs['trust_remote_code'] = False
             tokenizer_kwargs['trust_remote_code'] = False
 
@@ -568,6 +568,7 @@ class HuggingFaceCausalLM_(HuggingFace_):
 
         # add the kv quantization config to the model if specified.
         config = AutoConfig.from_pretrained(path, trust_remote_code=self.trust_remote_code)
+        print()
         use_flash_attn = model_kwargs.pop('use_flash_attn', False)
         if use_flash_attn and 'chatglm' not in path and 'mpt' not in path:
             config._flash_attn_2_enabled = True

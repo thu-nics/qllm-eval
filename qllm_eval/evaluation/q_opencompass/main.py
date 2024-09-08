@@ -7,7 +7,7 @@ from datetime import datetime
 
 from mmengine.config import Config, DictAction
 
-from opencompass.partitioners import MultimodalNaivePartitioner
+# from opencompass.partitioners import MultimodalNaivePartitioner
 from opencompass.registry import PARTITIONERS, RUNNERS, build_from_cfg
 from opencompass.runners import SlurmRunner
 from opencompass.summarizers import DefaultSummarizer
@@ -270,12 +270,12 @@ def main():
                            'The "infer" configuration will be overridden by '
                            'your runtime arguments.')
         # Check whether run multimodal evaluation
-        if args.mm_eval:
-            partitioner = MultimodalNaivePartitioner(
-                osp.join(cfg['work_dir'], 'predictions/'))
-            tasks = partitioner(cfg)
-            exec_mm_infer_runner(tasks, args, cfg)
-            return
+        # if args.mm_eval:
+        #     partitioner = MultimodalNaivePartitioner(
+        #         osp.join(cfg['work_dir'], 'predictions/'))
+        #     tasks = partitioner(cfg)
+        #     exec_mm_infer_runner(tasks, args, cfg)
+        #     return
 
         if args.dlc or args.slurm or cfg.get('infer', None) is None:
             fill_infer_cfg(cfg, args)
