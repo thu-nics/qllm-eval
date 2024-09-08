@@ -38,7 +38,7 @@ def quantize_model(model, args, quant_mix_gate=False):
         elif 'bloom' in model.config._name_or_path.lower():
             from qllm_eval.quantization.qattn.sw.bloom_attn import BloomAttention
             for i, block in enumerate(model.transformer.h):
-                new_attn = BloomAttention(model.config).half().to(block.self_attention.query_key_value.weight.device)
+                new_attn = BloomAttention(model.config, block.self_attention.layer_idx).half().to(block.self_attention.query_key_value.weight.device)
                 new_attn.load_state_dict(block.self_attention.state_dict())
                 block.self_attention = new_attn
         elif 'llama' in model.config.architectures[0].lower() or 'vicuna' in model.config.architectures[0].lower() or 'longchat' in model.config.architectures[0].lower() or 'baichuan' in model.config.architectures[0].lower():
@@ -139,6 +139,20 @@ def quantize_model(model, args, quant_mix_gate=False):
                 from qllm_eval.quantization.qattn.sw.gemma_attn import GemmaAttention
                 for i, block in enumerate(model.model.layers):
                     new_attn = GemmaAttention(model.config, block.self_attn.layer_idx).half().to(block.self_attn.q_proj.weight.device)
+                    new_attn.load_state_dict(block.self_attn.state_dict())
+                    block.self_attn = new_attn
+        elif 'deepseekv2' in model.config.architectures[0].lower():
+            if model.config._attn_implementation == "flash_attention_2":
+                print("Using flash attention for Deepseekv2 model")
+                from qllm_eval.quantization.qattn.sw.deepseekv2_attn import DeepseekV2FlashAttention2
+                for i, block in enumerate(model.model.layers):
+                    new_attn = DeepseekV2FlashAttention2(model.config, block.self_attn.layer_idx).half().to(block.self_attn.q_proj.weight.device)
+                    new_attn.load_state_dict(block.self_attn.state_dict())
+                    block.self_attn = new_attn
+            else:
+                from qllm_eval.quantization.qattn.sw.deepseekv2_attn import DeepseekV2Attention
+                for i, block in enumerate(model.model.layers):
+                    new_attn = DeepseekV2Attention(model.config, block.self_attn.layer_idx).half().to(block.self_attn.q_proj.weight.device)
                     new_attn.load_state_dict(block.self_attn.state_dict())
                     block.self_attn = new_attn
         else:
